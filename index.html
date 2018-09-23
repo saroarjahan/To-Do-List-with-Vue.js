@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Javascript training</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body class="body">
+
+
+  <h2>To Do List</h2>
+
+
+   <div id="box">
+
+    <input type="text" name="" placeholder="Enter Your ToDo List" v-model="item" @keyup.enter="add">
+
+    <ul v-show="all">
+      
+      <li  v-for="(lists, key) in lList">
+        <div class="show">
+          
+            <button class="left" @click="checkClick(lists)"><i class="fas fa-check-circle" :class="strike(lists)"></i></button> <label @click="checkClick(lists)" :class="strike(lists)" :for="lists">{{lists.title}}</label> 
+            <button @click="$delete(lList, key);double()">X</button>
+
+        </div>
+      </li>
+
+    </ul>
+
+
+    <ul v-show="onlyDone">
+      
+      <li  v-for="(lists, key) in lList">
+        <div class="show"  v-if="lists.status">
+          
+            <button class="left" @click="checkClick(lists)"><i class="fas fa-check-circle" :class="strike(lists)"></i></button>  <label @click="checkClick(lists)"  :class="strike(lists)" :for="lists">{{lists.title}}</label> 
+            <button @click="$delete(lList, key); double()">X</button>
+
+        </div>
+      </li>
+
+    </ul>
+
+
+
+
+    <div v-show="show" class="pad">
+      <button  class="complete" @click="allTask">All</button>  <button  class="complete" @click="completedTask">Completed</button> 
+    </div>
+
+
+     
+   </div>
+
+<script src="app.js"></script>
+
+</body>
+</html>
